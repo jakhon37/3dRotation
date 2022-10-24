@@ -53,137 +53,137 @@ def main_draw(im, im2, distance, velocity, angle, carry_d, t_time, spin_rpm, hei
     fnt = ("data/res/font/Amble-Bold.ttf")
     w, h = im.size                    #  image_5.jpg
                   #  image_5.jpg
-   # w, h = 2080, 2920             #  image_5.jpg
-   # w, h = 1080, 1920             #  image_5.jpg
-
+    # w, h = 2080, 2920             #  image_5.jpg
+    w, h = 1080, 1920             #  image_5.jpg
+    ration = 1080/w
     # distance, velocity, angel = ["math_out"]["solutions"]["solution2_1"]["ddistance"], json_data["math_out"]["solutions"]["solution2_1"]["velocity"], json_data["math_out"]["solutions"]["solution2_1"]["angle"]
     
     ####  rectangle  ####(5, h-860)  (305, 5)
-    start, end = (5, h-860), (305, 5)
+    start, end = (w*0.00463, h*0.552), (w*0.2824, h*0.0026)
     im = draw_rect(im, start, end, op=180)
 
     ####  put img  ####
     im = put_img(im, im2)
 
     ####  line  ####
-    start, end = (35, h-1800), (275, h-1800) # first top line 
+    start, end = (w*0.0324, h*0.063), (w*0.255, h*0.063) # first top line  35, h-1800 (275, h-1800)
     im = draw_line(im, start, end)
     #### below the yard
-    start, end = (35, h-1600), (275, h-1600)
+    start, end = (w*0.0324, h*0.167), (w*0.255, h*0.167) # (w*0.0324, h-1600), (w*0.255, h-1600)
     im = draw_line(im, start, end)
     ### between carry / avg total
-    start, end = (155, h-1475), (155, h-1595)
+    start, end = (w*0.144, h*0.232), (w*0.144, h*0.169)   # (155, h-1475), (155, h-1595)
     im = draw_line(im, start, end)
     ### below carry / time
-    start, end = (35, h-1470), (275, h-1470)
+    start, end = (w*0.0324, h*0.234), (w*0.255, h*0.234)   # (w*0.0324, h-1470), (w*0.255, h-1470)
     im = draw_line(im, start, end)
 
     #### below the M/S
-    start, end = (35, h-1270), (275, h-1270)
+    start, end = (w*0.0324, h*0.339), (w*0.255, h*0.339) # (w*0.0324, h-1270), (w*0.255, h-1270)
     im = draw_line(im, start, end)
     ### between ANGEL / avg BACKSPIN
-    start, end = (155, h-1145), (155, h-1265)
+    start, end = (w*0.144, h*0.404), (w*0.144, h*0.341)  # (w*0.144, h-1145), (w*0.144, h-1265)
     im = draw_line(im, start, end)
     ### anle / spin 
-    start, end = (35, h-1140), (275, h-1140)
+    start, end = (w*0.0324, h*0.41), (w*0.255, h*0.41) # (w*0.0324, h-1140), (w*0.255, h-1140)
     im = draw_line(im, start, end)
     ### between BACK/UP SPIN / SIDE SPIN 
-    start, end = (155, h-1005), (155, h-1135)
+    start, end = (w*0.144, h*0.477), (w*0.144, h*0.409)   # (w*0.144, h-1005), (w*0.144, h-1135)
     im = draw_line(im, start, end)
     ### below the TIME
-    start, end = (35, h-995), (275, h-995)
+    start, end = (w*0.0324, h*0.482), (w*0.255, h*0.482) # (w*0.0324, h-995), (w*0.255, h-995)
     im = draw_line(im, start, end)
     
     ####  put txt  ####
     #### distance value 
     distance = int(carry_d * 1.09361)  # convert to yard from meter 
     if len(str(distance)) > 2:
-        point = (45, h-1780)
+        point = (w*0.042, h*0.073) # (45, h-1780)
     elif len(str(distance )) == 2:
-        point = (80, h-1780)
+        point = (w*0.074, h*0.073)
     elif len(str(distance )) <2:
-        point = (120, h-1780)
-    point2, word, color, size, ops = (45, h-1780), f'{distance}', (255, 255, 255), 120, 255
+        point = (w*0.111, h*0.073)
+    point2, word, color, size, ops = (w*0.042, h*0.073), f'{distance}', (255, 255, 255), 120, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     #### total distance 
     distance = 'DISTANCE'
-    point, word, color, size, ops = (110, h-1790), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.102, h*0.0677), f'{distance}', (26, 198, 50), 20, 255 # (110, h-1790)
     im = draw_txt(im, fnt, point, word, color, size, ops)
     #### yards
     distance = 'YARDS'
-    point, word, color, size, ops = (100, h-1650), f'{distance}', (255, 255, 255), 35, 255
+    point, word, color, size, ops = (w*0.093, h*0.14), f'{distance}', (255, 255, 255), 35, 255 #  (100, h-1650),
     im = draw_txt(im, fnt, point, word, color, size, ops)
     
     #### velocity 
-    distance = 'VELOCITY'
-    point, word, color, size, ops = (47, h-1590), f'{distance}', (26, 198, 50), 20, 255
+    distance = 'VELOCITY' 
+    point, word, color, size, ops = (w*0.0435, h*0.172), f'{distance}', (26, 198, 50), 20, 255 # (47, h-1590)
     im = draw_txt(im, fnt, point, word, color, size, ops)
         ####  VELOCITY value
     distance = int(velocity * 2.23694 )# convert to mph  grom m/s
     if len(str(distance)) > 2:
-        point = (40, h-1565)
+        point = (w*0.037, h*0.185)
     elif len(str(distance )) == 2:
-        point = (55, h-1565)
+        point = (w*0.051, h*0.185)
     elif len(str(distance )) < 2:
-        point = (75, h-1565)
-    point2, word, color, size, ops = (47, h-1555), f'{distance}', (255, 255, 255), 60, 255
+        point = (w*0.0694, h*0.185)
+    point2, word, color, size, ops = (w*0.0435, h-1555), f'{distance}', (255, 255, 255), 60, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     #### velocity  indicator
     distance = 'MPH'
-    point, word, color, size, ops = (70, h-1500), f'{distance}', (255, 255, 255), 20, 255
+    point, word, color, size, ops = (w*0.065, h*0.219), f'{distance}', (255, 255, 255), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     
     
     ####  height 
     distance = 'APEX'
-    point, word, color, size, ops = (190, h-1590), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.176, h*0.172), f'{distance}', (26, 198, 50), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     ####   apex height 
     distance =  int(height_tr * 3.28084) # convert to feet from meter 
     if len(str(distance)) > 1:
-        point = (183, h-1565)
+        point = (w*0.1694, h*0.185)
     elif len(str(distance )) <=1:
-        point = (197, h-1565)
+        point = (w*0.1824, h*0.185)
     point2, word, color, size, ops = (193, h-1550), f'{distance}', (255, 255, 255), 60, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     #### apex  indicator
     distance = 'FEET'
-    point, word, color, size, ops = (195, h-1500), f'{distance}', (255, 255, 255), 20, 255
+    point, word, color, size, ops = (w*0.18, h*0.219), f'{distance}', (255, 255, 255), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     
     ####  TOTAL TIME 
     distance = 'TOTAL TIME'
-    point, word, color, size, ops = (102, h-1460), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.094, h*0.24), f'{distance}', (26, 198, 50), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     ####  TOTAL TIME 
     distance = t_time
     if len(str(velocity)) >= 2:
-        point = (50, h-1450)
+        point = (w*0.046, h*0.245)
     elif len(str(velocity)) < 2:
-        point = (125, h-1450)
+        point = (w*0.116, h*0.245)
     word, color, size, ops = f'{distance}', (255, 255, 255), 100, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     #### total dime indicator
     distance = 'SEC'
-    point, word, color, size, ops = (127, h-1340), f'{distance}', (255, 255, 255), 35, 255
+    point, word, color, size, ops = (w*0.118, h*0.3), f'{distance}', (255, 255, 255), 35, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     
     #### laUnch angle 
     distance = 'ANGLE'
-    point, word, color, size, ops = (57, h-1250), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.053, h*0.349), f'{distance}', (26, 198, 50), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     #### launch angle value
     distance = angle
     if len(str(distance)) > 1:
-        point = (53, h-1220)
+        point = (w*0.049, h*0.365)
     elif len(str(distance)) <= 1:
-        point = (68, h-1220)            # {"∠"}  {"°"}
-    point2, word, color, size, ops = (53, h-1220), f'{distance}{"°"}', (255, 255, 255), 60, 255
+        point = (w*0.063, h*0.365)            # {"∠"}  {"°"}
+    point2, word, color, size, ops = (w*0.049, h*0.365), f'{distance}{"°"}', (255, 255, 255), 60, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     
     #### DIRECTION angle 
     distance = 'DIRECTION'
-    point, word, color, size, ops = (173, h-1250), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.16, h*0.349), f'{distance}', (26, 198, 50), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     ####  direction angle value
     distance = int(angle_dif)
@@ -192,14 +192,14 @@ def main_draw(im, im2, distance, velocity, angle, carry_d, t_time, spin_rpm, hei
     #     point, word = (220, h-1205),  f'{distance}{"°"}'
     direct_l, direct_r, direct_st = 'L', 'R', 'SR'
     if distance >0:
-        point_w, word_w = (170, h-1220),  f'{direct_r}'
-        point, word = (220, h-1205),  f'{distance}{"°"}'
+        point_w, word_w = (w*0.157, h*0.365),  f'{direct_r}'
+        point, word = (w*0.2, h*0.373),  f'{distance}{"°"}'
     if distance <0:
-        point_w, word_w = (170, h-1220),  f'{direct_l}'
-        point, word = (220, h-1205),  f'{abs(distance)}{"°"}'
+        point_w, word_w = (w*0.157, h*0.365),  f'{direct_l}'
+        point, word = (w*0.2, h*0.373),  f'{abs(distance)}{"°"}'
     if distance == 0:
-        point_w, word_w = (167, h-1220),  f'{direct_st}'
-        point, word = (238, h-1205),  f'{distance}{"°"}'
+        point_w, word_w = (w*0.155, h*0.365),  f'{direct_st}'
+        point, word = (w*0.22, h-h*0.373),  f'{distance}{"°"}'
     # if len(str(angle_dif))==3:
     #     print(len(str(angle_dif)))
         # word = abs(angle_dif)
@@ -211,33 +211,33 @@ def main_draw(im, im2, distance, velocity, angle, carry_d, t_time, spin_rpm, hei
     
        #### angle 
     distance = 'BACK SPIN'
-    point, word, color, size, ops = (40, h-1130), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.037, h*0.41), f'{distance}', (26, 198, 50), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
         ####  back spin value
     distance = spin_rpm[0]
     if len(str(spin_rpm)) > 1:
-        point = (33, h-1110)
+        point = (w*0.03, h*0.42)
     elif len(str(spin_rpm)) <= 1:
-        point = (68, h-1110)
-    point2, word, color, size, ops = (53, h-1100), f'{distance}', (255, 255, 255), 60, 255
+        point = (w*0.063, h*0.42)
+    point2, word, color, size, ops = (w*0.049, h*0.427), f'{distance}', (255, 255, 255), 60, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)    
     # spin reamining little 
     distance = (f',{spin_rpm[1:]}')
     if len(str(spin_rpm[1:])) > 1:
         distance = (f',{spin_rpm[1:]}')
-        point = (63, h-1090)
+        point = (w*0.058, h*0.43)
     elif len(str(spin_rpm[1:])) <= 1:
         distance = (f' ')
     word, color, size, ops = f'{distance}', (255, 255, 255), 40, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     #### backspin indicator 
     distance = 'RPM'
-    point, word, color, size, ops = (63, h-1042), f'{distance}', (255, 255, 255), 25, 255
+    point, word, color, size, ops = (w*0.058, h*0.457), f'{distance}', (255, 255, 255), 25, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     
     #### side spin 
     distance = 'SIDE SPIN'
-    point, word, color, size, ops = (173, h-1130), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.16, h*0.41), f'{distance}', (26, 198, 50), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     ####  side spin value
     # sp = [1, 3, 5, 8, 10, 13, 15, 18, 20, 22, 24,26]
@@ -258,14 +258,14 @@ def main_draw(im, im2, distance, velocity, angle, carry_d, t_time, spin_rpm, hei
     # spin_rpm = str(round(int(spin_rpm)*0.3, 3)).split(".")[0]
     direct_l, direct_r, direct_st = 'L', 'R', 'SR'
     if distance >0:
-        point_w, word_w = (170, h-1110),  f'{direct_r}'
-        point, word = (215, h-1093),  f'{distance}'
+        point_w, word_w = (w*0.157, h*0.423),  f'{direct_r}'
+        point, word = (w*0.199, h*0.43),  f'{distance}'
     if distance <0:
-        point_w, word_w = (170, h-1110),  f'{direct_l}'
-        point, word = (210, h-1095),  f'{abs(distance)}'
+        point_w, word_w = (w*0.157, h*0.423),  f'{direct_l}'
+        point, word = (w*0.194, h*0.43),  f'{abs(distance)}'
     if distance == 0:
-        point_w, word_w = (167, h-1110),  f'{direct_st}'
-        point, word = (238, h-1093),  f'{distance}'
+        point_w, word_w = (w*0.155, h*0.423),  f'{direct_st}'
+        point, word = (w*0.22, h*0.43),  f'{distance}'
     # if len(str(angle_dif))==3:
     #     print(len(str(angle_dif)))
         
@@ -276,29 +276,29 @@ def main_draw(im, im2, distance, velocity, angle, carry_d, t_time, spin_rpm, hei
 
     #### side spin indicator 
     distance = 'RPM'
-    point, word, color, size, ops = (195, h-1042), f'{distance}', (255, 255, 255), 25, 255
+    point, word, color, size, ops = (w*0.18, h*0.457), f'{distance}', (255, 255, 255), 25, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
 
     ####  type 
     distance = 'TYPE'
-    point, word, color, size, ops = (130, h-990), f'{distance}', (26, 198, 50), 20, 255
+    point, word, color, size, ops = (w*0.12, h*0.484), f'{distance}', (26, 198, 50), 20, 255
     im = draw_txt(im, fnt, point, word, color, size, ops)
     ####  type 
     distance = type_tr
-    point, word, color, size, ops = (35, h-975), f'{distance}', (255, 255, 255), 70, 255
+    point, word, color, size, ops = (w*0.0324, h*0.49), f'{distance}', (255, 255, 255), 70, 255
     # if "." in distance:
     #     point = (35, h-975)
     if len(distance) < 5:
-        point = (90, h-975)
+        point = (w*0.083, h*0.49)
     elif len(distance) == 5:
-        point = (80, h-975)
+        point = (w*0.074, h*0.49)
     elif len(distance) > 5:
-        point = (45, h-975)
+        point = (w*0.042, h*0.49)
         
     # elif "slice" in distance:
     #     point = (80, h-975)
     # elif "stright" in distance:
-    #     point = (45, h-975)
+    #     point = (w*0.042, h-975)
     # elif "hook" in distance:
     #     point = (70, h-975)
     im = draw_txt(im, fnt, point, word, color, size, ops)
